@@ -1,18 +1,28 @@
-name: Concat Files
+name: Merge M3U Files
 
 on:
   push:
     branches:
-
-      • main
+      - main
 
 jobs:
-  concat:
+  merge-m3u:
     runs-on: ubuntu-latest
     steps:
-
-      • uses: actions/checkout@v3
-
-      • uses: appleboy/github-actions/blob/master/actions/concat@v1
+      - uses: actions/checkout@v3
+      - name: Fetch other repository
+        uses: actions/fetch-repo@v3
         with:
-          args: https://github.com/YueChan/Live/blob/main/IPTV.m3u,https://raw.githubusercontent.com/YueChan/Live/main/Global.m3u > IPTV.m3u
+          repo: YueChan/IPTV
+          ref: main
+          path: IPTV
+      - name: Merge M3U files
+        run: |
+          cat YueChan/IPTV.m3u YueChan/Global.m3u > IPTV.m3u
+      - name: Commit merged M3U file
+        run: |
+          git config user.name "yupengoo7"
+          git config user.email "yupeng007@gmail.com"
+          git add IPTV.m3u
+          git commit -m "Merge M3U files"
+          git push
