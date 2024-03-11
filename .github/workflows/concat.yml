@@ -1,0 +1,18 @@
+name: Concat Files
+
+on:
+  push:
+    branches:
+
+      • main
+
+jobs:
+  concat:
+    runs-on: ubuntu-latest
+    steps:
+
+      • uses: actions/checkout@v3
+
+      • uses: appleboy/github-actions/blob/master/actions/concat@v1
+        with:
+          args: https://github.com/YueChan/Live/blob/main/IPTV.m3u,https://raw.githubusercontent.com/YueChan/Live/main/Global.m3u > IPTV.m3u
