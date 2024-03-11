@@ -24,7 +24,7 @@ jobs:
         
         # 将合并后的文件添加到您的仓库
         git config --global user.email "yupeng007@gmail.com"
-        git config --global user.name "yupengoo7"
+        git config --global user.name "yupeng007@gmail.com"
         git add merged IPTV.m3u
         git commit -m "Merge IPTV.m3u from other repository"
         git push
